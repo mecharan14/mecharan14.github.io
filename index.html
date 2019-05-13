@@ -5,237 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="https://vuejs.org/images/icons/apple-icon-57x57.png">
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.0/css/mdb.css">
 </head>
 <body>
-	<style type="text/css">
-		.progress{
-			position: fixed;
-			top: 30%;
-			width: 70%;
-			left: 15%;
-			right: 15%;
-		}
-	</style>
 
-	<script>
-		
+		<div id="app-6">
+				<transition enter-active-class="animated fadeIn fast" leave-active-class="animated fadeOut fast">
+						<p>{{ message }}</p>
+				</transition>
+				<input v-model="message">
+			</div>
 
-		
-	</script>
-	
-	<div id="app3">
-	<div class="progress" v-if="seen">
-      <div class="indeterminate"></div>
-  </div>
-</div>
+			<script>
+				var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+			</script>
 
- 	<div id="app2">
- 		<transition enter-active-class="animated fadeIn faster" leave-active-class="animated fadeOut faster">
- 		<div class="nav-bar" v-if="nav"><nav>
-    <div class="nav-wrapper red">
-    	<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <a href="#" class="brand-logo center">Raktah</a>
-    </div>
-  </nav>
-<ul id="slide-out" class="sidenav">
-    <li><div class="user-view">
-      <div class="background">
-        <img src="images/office.jpg">
-      </div>
-      <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-      <a href="#name"><span class="white-text name">John Doe</span></a>
-      <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-    </div></li>
-    <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-    <li><a href="#!">Second Link</a></li>
-    <li><div class="divider"></div></li>
-    <li><a class="subheader">Subheader</a></li>
-    <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-  </ul>
-  </div>
-
-</transition>
-
- 	</div>
-	
-
-	<div id="app">
-		<transition name="animated" mode="out-in" enter-active-class="animated bounceInUp fast" leave-active-class="animated bounceOutDown fast">
-			<router-view></router-view>
-		</transition>
-		<button class="btn-large waves-effect waves-light white-text red" type="submit" name="action" v-if="login" @click="logout">Logout</button>
-		<transition enter-active-class="animated fadeIn fast" leave-active-class="animated fadeOut fast">
-		<div v-if="login">
-			<floatin-bar/>
-		</div>
-	</transition>
-  
-	</div>
-
-	
-
-<script src="vuefn.js"></script>
-<script type="text/javascript">
-
-
-	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.fixed-action-btn');
-    var instances = M.FloatingActionButton.init(elems, {
-      toolbarEnabled: true
-    });
-  });
-
-	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.sidenav');
-    var instances = M.Sidenav.init(elems, {
-    	edge: 'left',
-    	draggable: true
-    });
-  });
-
-	let app2 = new Vue({
-	el: "#app2",
-	data: {
-		nav: (localStorage.getItem("login") === "yes")
-	}
-	})
-
-	let app3 = new Vue({
-		el: "#app3",
-		data: {
-			seen: (localStorage.getItem("login") === "yes")
-		}
-		
-	})
-
-	const Home = {
-		template: `<div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Home</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-    </div>
-  </div>`
-	}
-
-	const Profile = {
-		template: `<div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Profile</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-    </div>
-  </div>`
-	}
-
-	const Share = {
-		template: `<div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Share</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-    </div>
-  </div>`
-	}
-
-	const Settings = {
-		data: function(){
-			return{
-				count: 0
-			}
-		},
-		created: function hidenav(){
-			app2.nav = false
-		},
-		destroyed: function shownav(){
-			app2.nav = true
-		},
-		template: `<div class="row">
-    <div class="col s12 m6">
-      <div class="card blue-grey darken-1">
-        <div class="card-content white-text">
-          <span class="card-title">Settings</span>
-          <p>I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively.</p>
-        </div>
-      </div>
-    </div>
-  </div>`
-	}
-
-	const Login = {
-		template: `<before-login/>`
-	}
-
-	const router = new VueRouter({
-		routes: [
-			{path: '/', component: Home},
-			{path: '/profile', component: Profile},
-			{path: '/share', component: Share},
-			{path: '/settings', component: Settings},
-			{path: '/login', component: Login}
-		]
-	})
-let test = new Vue({
-	router,
-	el: "#app",
-	data: function() {
-		return{
-			login: (localStorage.getItem("login") === "yes")
-		}
-	},
-	methods: {
-		logout: function(){
-			localStorage.setItem("login", "no");
-			this.login = (localStorage.getItem("login") === "yes")
-		}
-	},
-	created: function(){
-		if(localStorage.getItem("login") === "yes"){
-			router.push('/')
-		}else{
-			router.push('/login')
-		}
-	},
-	watch: {
-		login: function(){
-			if(this.login === false){
-				router.push('/login')
-			}else{
-				router.push('/')
-			}
-		}
-	}
-
-}).$mount("#app")
-
-
-</script>
-<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="/__/firebase/6.0.1/firebase-app.js"></script>
-
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#reserved-urls -->
-
-<!-- Initialize Firebase -->
-<script src="/__/firebase/init.js"></script>
 </body>
 </html>
